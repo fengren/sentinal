@@ -17,7 +17,7 @@
       "title": "Requests / sec",
       "type": "stat",
       "gridPos": { "h": 5, "w": 4, "x": 0, "y": 1 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "sum(rate(http_requests_total[5m]))",
@@ -46,7 +46,7 @@
       "title": "Active Users",
       "type": "stat",
       "gridPos": { "h": 5, "w": 4, "x": 4, "y": 1 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "active_users",
@@ -73,7 +73,7 @@
       "title": "WS Connections",
       "type": "stat",
       "gridPos": { "h": 5, "w": 4, "x": 8, "y": 1 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "websocket_connections_active",
@@ -100,7 +100,7 @@
       "title": "Video Queue",
       "type": "stat",
       "gridPos": { "h": 5, "w": 4, "x": 12, "y": 1 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "video_generation_queue_size",
@@ -129,7 +129,7 @@
       "title": "Error Rate",
       "type": "stat",
       "gridPos": { "h": 5, "w": 4, "x": 16, "y": 1 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "sum(rate(http_requests_total{status_code=~\"4..|5..\"}[5m]))",
@@ -160,7 +160,7 @@
       "title": "Credit Check Failures",
       "type": "stat",
       "gridPos": { "h": 5, "w": 4, "x": 20, "y": 1 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "credits_check_failures_total",
@@ -195,7 +195,7 @@
       "title": "Request Rate by Endpoint",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 0, "y": 7 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "sum by (endpoint) (rate(http_requests_total[5m]))",
@@ -223,7 +223,7 @@
       "title": "Request Rate by Status Code",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 12, "y": 7 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "sum by (status_code) (rate(http_requests_total[5m]))",
@@ -268,7 +268,7 @@
       "title": "Request Rate by Method",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 0, "y": 15 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "sum by (method) (rate(http_requests_total[5m]))",
@@ -295,7 +295,7 @@
       "title": "In-Progress Requests",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 12, "y": 15 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "http_requests_in_progress",
@@ -328,7 +328,7 @@
       "title": "Overall Latency P50 / P95 / P99",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 0, "y": 24 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "histogram_quantile(0.50, sum by (le) (rate(http_request_duration_seconds_bucket[5m])))",
@@ -365,7 +365,7 @@
       "title": "Latency P95 by Endpoint",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 12, "y": 24 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "histogram_quantile(0.95, sum by (le, endpoint) (rate(http_request_duration_seconds_bucket[5m])))",
@@ -393,7 +393,7 @@
       "title": "Request Duration Heatmap by Endpoint",
       "type": "heatmap",
       "gridPos": { "h": 8, "w": 24, "x": 0, "y": 32 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "sum by (le, endpoint) (increase(http_request_duration_seconds_bucket[5m]))",
@@ -420,7 +420,7 @@
       "title": "User Registrations",
       "type": "stat",
       "gridPos": { "h": 5, "w": 4, "x": 0, "y": 41 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "user_registration_total",
@@ -445,7 +445,7 @@
       "title": "User Logins (rate)",
       "type": "stat",
       "gridPos": { "h": 5, "w": 4, "x": 4, "y": 41 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "sum(rate(user_login_total[5m]))",
@@ -472,7 +472,7 @@
       "title": "Video Generation Queue & Status",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 0, "y": 46 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "video_generation_queue_size",
@@ -503,7 +503,7 @@
       "title": "Video Generation Rate & Duration",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 12, "y": 46 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "sum(rate(video_generation_total[5m]))",
@@ -544,7 +544,7 @@
       "title": "Credits Consumed",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 8, "x": 0, "y": 54 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "sum(rate(credits_consumed_total[5m]))",
@@ -568,7 +568,7 @@
       "title": "Balance Queries (rate)",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 8, "x": 8, "y": 54 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "sum(rate(user_balance_queries_total[5m]))",
@@ -591,7 +591,7 @@
       "title": "Error Count",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 8, "x": 16, "y": 54 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "sum by (type) (rate(error_count_total[5m]))",
@@ -623,7 +623,7 @@
       "title": "AGIOne API Call Rate",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 8, "x": 0, "y": 63 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "sum(rate(agione_api_calls_total[5m]))",
@@ -647,7 +647,7 @@
       "title": "AGIOne API Latency",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 8, "x": 8, "y": 63 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "histogram_quantile(0.50, sum by (le) (rate(agione_api_duration_seconds_bucket[5m])))",
@@ -680,7 +680,7 @@
       "title": "AGIOne API Errors",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 8, "x": 16, "y": 63 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "sum(rate(agione_api_errors_total[5m]))",
@@ -711,7 +711,7 @@
       "title": "WebSocket Connections",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 8, "x": 0, "y": 72 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "websocket_connections_active",
@@ -734,7 +734,7 @@
       "title": "WebSocket Messages",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 8, "x": 8, "y": 72 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "sum(rate(websocket_messages_sent_total[5m]))",
@@ -762,7 +762,7 @@
       "title": "Media Uploads",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 8, "x": 16, "y": 72 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "sum(rate(media_upload_total[5m]))",
@@ -806,7 +806,7 @@
       "title": "CPU Time",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 6, "x": 0, "y": 81 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "rate(process_cpu_seconds_total[5m])",
@@ -829,7 +829,7 @@
       "title": "Memory",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 6, "x": 6, "y": 81 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "process_resident_memory_bytes",
@@ -857,7 +857,7 @@
       "title": "Open File Descriptors",
       "type": "gauge",
       "gridPos": { "h": 8, "w": 6, "x": 12, "y": 81 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "process_open_fds",
@@ -883,7 +883,7 @@
       "title": "Python GC Collections",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 6, "x": 18, "y": 81 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "rate(python_gc_collections_total[5m])",

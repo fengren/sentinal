@@ -36,7 +36,7 @@
       "description": "Current probe result: UP or DOWN",
       "type": "stat",
       "gridPos": { "h": 5, "w": 3, "x": 0, "y": 1 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "probe_success{job=~\"$job\"}",
@@ -70,7 +70,7 @@
       "description": "Last probe HTTP response code",
       "type": "stat",
       "gridPos": { "h": 5, "w": 3, "x": 3, "y": 1 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "probe_http_status_code{job=~\"$job\"}",
@@ -103,7 +103,7 @@
       "description": "Latest probe round-trip duration",
       "type": "stat",
       "gridPos": { "h": 5, "w": 3, "x": 6, "y": 1 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "probe_duration_seconds{job=~\"$job\"}",
@@ -136,7 +136,7 @@
       "description": "Days until TLS certificate expires",
       "type": "stat",
       "gridPos": { "h": 5, "w": 3, "x": 9, "y": 1 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "floor((probe_ssl_earliest_cert_expiry{job=~\"$job\"} - time()) / 86400)",
@@ -168,7 +168,7 @@
       "title": "Uptime 1h",
       "type": "stat",
       "gridPos": { "h": 5, "w": 3, "x": 12, "y": 1 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "avg_over_time(probe_success{job=~\"$job\"}[1h]) * 100",
@@ -200,7 +200,7 @@
       "title": "Uptime 24h",
       "type": "stat",
       "gridPos": { "h": 5, "w": 3, "x": 15, "y": 1 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "avg_over_time(probe_success{job=~\"$job\"}[24h]) * 100",
@@ -232,7 +232,7 @@
       "title": "Uptime 7d",
       "type": "stat",
       "gridPos": { "h": 5, "w": 3, "x": 18, "y": 1 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "avg_over_time(probe_success{job=~\"$job\"}[7d]) * 100",
@@ -264,7 +264,7 @@
       "title": "Uptime 30d",
       "type": "stat",
       "gridPos": { "h": 5, "w": 3, "x": 21, "y": 1 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "avg_over_time(probe_success{job=~\"$job\"}[30d]) * 100",
@@ -297,7 +297,7 @@
       "description": "Green = UP, Red = DOWN. Shows every probe result over time.",
       "type": "state-timeline",
       "gridPos": { "h": 4, "w": 24, "x": 0, "y": 6 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "probe_success{job=~\"$job\"}",
@@ -340,7 +340,7 @@
       "description": "Probe round-trip time. Orange line = 1s warning, Red line = 3s critical.",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 0, "y": 11 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "probe_duration_seconds{job=~\"$job\"}",
@@ -399,7 +399,7 @@
       "description": "P50 / P90 / P95 / P99 calculated from rolling 5m window.",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 12, "y": 11 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "quantile_over_time(0.50, probe_duration_seconds{job=~\"$job\"}[5m])",
@@ -443,7 +443,7 @@
       "description": "Stacked breakdown: DNS lookup, TCP connect, TLS handshake, server processing, content transfer.",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 24, "x": 0, "y": 19 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "probe_dns_lookup_time_seconds{job=~\"$job\"}",
@@ -522,7 +522,7 @@
       "description": "Rolling availability percentage over time. Red zone = below 99%, orange = below 99.9%.",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 16, "x": 0, "y": 28 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "avg_over_time(probe_success{job=~\"$job\"}[$__range]) * 100",
@@ -569,7 +569,7 @@
       "description": "Number of failed probes in each 5-minute window.",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 8, "x": 16, "y": 28 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "count_over_time((probe_success{job=~\"$job\"} == 0)[5m:15s])",
@@ -605,7 +605,7 @@
       "description": "Days remaining on the TLS certificate.",
       "type": "gauge",
       "gridPos": { "h": 7, "w": 8, "x": 0, "y": 37 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "floor((probe_ssl_earliest_cert_expiry{job=~\"$job\"} - time()) / 86400)",
@@ -639,7 +639,7 @@
       "description": "Track certificate expiry countdown. Alert if approaching the red zone.",
       "type": "timeseries",
       "gridPos": { "h": 7, "w": 16, "x": 8, "y": 37 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "(probe_ssl_earliest_cert_expiry{job=~\"$job\"} - time()) / 86400",
@@ -686,7 +686,7 @@
       "description": "Last detected HTTP protocol version",
       "type": "stat",
       "gridPos": { "h": 4, "w": 6, "x": 0, "y": 45 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "probe_http_version{job=~\"$job\"}",
@@ -715,7 +715,7 @@
       "description": "IP version used for the last probe",
       "type": "stat",
       "gridPos": { "h": 4, "w": 6, "x": 6, "y": 45 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "probe_ip_protocol{job=~\"$job\"}",
@@ -743,7 +743,7 @@
       "description": "Time spent resolving the hostname",
       "type": "timeseries",
       "gridPos": { "h": 7, "w": 12, "x": 12, "y": 45 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         {
           "expr": "probe_dns_lookup_time_seconds{job=~\"$job\"}",
