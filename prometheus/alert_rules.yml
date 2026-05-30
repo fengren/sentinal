@@ -1,0 +1,38 @@
+groups:
+  - name: blackbox_alerts
+    rules:
+      - alert: EndpointDown
+        expr: probe_success == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Endpoint {{ $labels.instance }} is down"
+          description: "{{ $labels.instance }} has been unreachable for more than 1 minute."
+
+      - alert: SSLEntryExpiringSoon
+        expr: probe_ssl_earliest_cert_expiry - time() < 86400 * 14
+        for: 1h
+        labels:
+          severity: warning
+        annotations:
+          summary: "SSL cert for {{ $labels.instance }} expiring soon"
+          description: "SSL certificate for {{ $labels.instance }} expires in less than 14 days."
+
+      - alert: SlowResponse
+        expr: probe_duration_seconds > 5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Slow response from {{ $labels.instance }}"
+          description: "{{ $labels.instance }} response time is {{ $value }}s (threshold: 5s)."
+
+      - alert: HighHTTPStatus
+        expr: probe_http_status_code >= 400
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "HTTP error from {{ $labels.instance }}"
+          description: "{{ $labels.instance }} returned status {{ $value }}."
