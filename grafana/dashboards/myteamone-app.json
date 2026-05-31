@@ -5,7 +5,7 @@
   "graphTooltip": 1,
   "id": null,
   "links": [
-    { "icon": "heart", "title": "Health Monitor", "url": "/d/health-monitor", "type": "link" }
+    { "icon": "heart", "title": "Blackbox Exporter", "url": "/d/blackbox-exporter", "type": "link" }
   ],
   "panels": [
     {
