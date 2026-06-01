@@ -622,7 +622,10 @@
       }
     },
     {
-      "datasource": "prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1454,9 +1457,9 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "prometheus-sys-01",
-          "value": "prometheus-sys-01"
+          "selected": true,
+          "text": "Prometheus",
+          "value": "prometheus"
         },
         "error": null,
         "hide": 2,
@@ -1468,7 +1471,7 @@
         "query": "prometheus",
         "queryValue": "",
         "refresh": 1,
-        "regex": "/.*sys.*/",
+        "regex": "",
         "skipUrlSync": false,
         "type": "datasource"
       },
